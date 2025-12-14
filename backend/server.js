@@ -18,7 +18,15 @@ const app = express();
 app.use(passport.initialize());
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      process.env.CLIENT_URL,   // deployed frontend
+      "http://localhost:5173"   // local dev
+    ],
+    credentials: true
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
