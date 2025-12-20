@@ -4,39 +4,75 @@
 }
 
 .dashboard-header {
-  background: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.dashboard-header > div,
+.header-content {
+  text-align: center;
+  flex: 1;
+  margin: 0 auto;
 }
 
 .dashboard-header h1 {
-  color: #667eea;
+  color: white;
   font-size: 28px;
   margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .welcome-text {
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 14px;
+  font-weight: 400;
 }
 
 .btn-logout {
-  background: #f44336;
+  background: rgba(255, 255, 255, 0.15);
   color: white;
-  padding: 10px 20px;
-  border: none;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background 0.3s;
+  font-size: 11px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  z-index: 10;
+  min-width: auto;
+  max-width: fit-content;
+  height: auto;
+}
+
+.btn-logout svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
 }
 
 .btn-logout:hover {
-  background: #d32f2f;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-logout:active {
+  transform: translateY(-50%) scale(0.98);
 }
 
 .dashboard-content {
@@ -289,9 +325,22 @@
 @media (max-width: 768px) {
   .dashboard-header {
     padding: 16px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    justify-content: center;
+  }
+
+  .btn-logout {
+    left: 8px;
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .btn-logout svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .btn-logout span {
+    display: none;
   }
 
   .dashboard-actions {

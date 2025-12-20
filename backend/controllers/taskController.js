@@ -1,8 +1,5 @@
 const Task = require('../models/Task');
 
-// @desc    Get all tasks for logged in user
-// @route   GET /api/tasks
-// @access  Private
 const getTasks = async (req, res, next) => {
   try {
     const tasks = await Task.find({ user: req.user.id }).sort({
@@ -19,14 +16,10 @@ const getTasks = async (req, res, next) => {
   }
 };
 
-// @desc    Create new task
-// @route   POST /api/tasks
-// @access  Private
 const createTask = async (req, res, next) => {
   try {
     const { title, description, status } = req.body;
 
-    // Validation
     if (!title) {
       return res.status(400).json({
         success: false,
@@ -51,9 +44,6 @@ const createTask = async (req, res, next) => {
   }
 };
 
-// @desc    Update task
-// @route   PUT /api/tasks/:id
-// @access  Private
 const updateTask = async (req, res, next) => {
   try {
     const { title, description, status } = req.body;
@@ -67,7 +57,6 @@ const updateTask = async (req, res, next) => {
       });
     }
 
-    // Make sure user owns the task
     if (task.user.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,
@@ -75,7 +64,6 @@ const updateTask = async (req, res, next) => {
       });
     }
 
-    // Update task
     task = await Task.findByIdAndUpdate(
       req.params.id,
       {
@@ -99,9 +87,6 @@ const updateTask = async (req, res, next) => {
   }
 };
 
-// @desc    Delete task
-// @route   DELETE /api/tasks/:id
-// @access  Private
 const deleteTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -113,7 +98,6 @@ const deleteTask = async (req, res, next) => {
       });
     }
 
-    // Make sure user owns the task
     if (task.user.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,

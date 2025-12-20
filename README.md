@@ -317,31 +317,9 @@ Headers: { "Authorization": "Bearer <token>" }
 - **Error Handling**: Centralized error middleware in backend
 - **Code Quality**: Clean, readable, and maintainable code structure
 
-## 🚀 Deployment
-
-### Backend Deployment (Example: Heroku)
-
-1. Set environment variables in Heroku dashboard
-2. Ensure MongoDB Atlas connection string is set
-3. Update `CLIENT_URL` to production frontend URL
-4. Deploy: `git push heroku main`
-
-### Frontend Deployment (Example: Vercel/Netlify)
-
-1. Set environment variables in deployment platform
-2. Update `VITE_BACKEND_URL` to production backend URL
-3. Build: `npm run build`
-4. Deploy the `dist` folder
-
 ## 📄 License
 
 This project is open source and available under the MIT License.
-
-## 👨‍💻 Author
-
-Built with ❤️ for production-ready task management.
-
----
 
 **Happy Task Managing! 🎉**
 
