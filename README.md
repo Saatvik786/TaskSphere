@@ -301,6 +301,27 @@ Headers: { "Authorization": "Bearer <token>" }
 - Check Client ID and Secret in `.env`
 - Ensure Google+ API is enabled
 
+### OAuth Callback "Not Found" Error After Deployment
+If you're getting a "Not Found" error on `/auth/callback` after deployment:
+
+1. **Verify Backend Environment Variables:**
+   - `CLIENT_URL` must be set to your frontend URL: `https://tasksphere-frontend-1nja.onrender.com`
+   - `GOOGLE_CALLBACK_URL` must be set to your backend callback URL: `https://your-backend-url.onrender.com/api/auth/google/callback`
+   - Ensure these match exactly (no trailing slashes)
+
+2. **Verify Frontend Routing Configuration:**
+   - Check that `render.yaml` has the rewrite rule: `source: /*` → `destination: /index.html`
+   - Ensure `_redirects` file in `public/` folder contains: `/*    /index.html   200`
+   - Both should be present for redundancy
+
+3. **Verify Google Cloud Console:**
+   - Authorized redirect URIs must include: `https://your-backend-url.onrender.com/api/auth/google/callback`
+   - The URI must match exactly (including https, no trailing slash)
+
+4. **Redeploy After Changes:**
+   - After updating environment variables or configuration files, redeploy both frontend and backend
+   - Clear browser cache and test in incognito mode
+
 ### CORS Errors
 - Verify `CLIENT_URL` in backend `.env` matches frontend URL
 - Check backend CORS configuration
